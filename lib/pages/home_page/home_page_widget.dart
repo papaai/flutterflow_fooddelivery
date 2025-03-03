@@ -299,6 +299,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                 ),
               ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 0.0, 0.0),
+                child: Text(
+                  'Reorder',
+                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                        fontFamily: 'Inter Tight',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
             ],
           ),
         ),
