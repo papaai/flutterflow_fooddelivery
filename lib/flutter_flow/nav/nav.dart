@@ -64,6 +64,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: HomePageWidget.routeName,
           path: HomePageWidget.routePath,
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: ManageMenuWidget.routeName,
+          path: ManageMenuWidget.routePath,
+          builder: (context, params) => ManageMenuWidget(),
+        ),
+        FFRoute(
+          name: ItemManageWidget.routeName,
+          path: ItemManageWidget.routePath,
+          builder: (context, params) => ItemManageWidget(),
+        ),
+        FFRoute(
+          name: MostPopularMenuWidget.routeName,
+          path: MostPopularMenuWidget.routePath,
+          builder: (context, params) => MostPopularMenuWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
