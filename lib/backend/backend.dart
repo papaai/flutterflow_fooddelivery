@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'schema/util/firestore_util.dart';
 
-import 'schema/demo_record.dart';
+import 'schema/restrurants_record.dart';
+import 'schema/menu_category_record.dart';
+import 'schema/menu_item_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -11,40 +13,116 @@ export 'schema/index.dart';
 export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
-export 'schema/demo_record.dart';
+export 'schema/restrurants_record.dart';
+export 'schema/menu_category_record.dart';
+export 'schema/menu_item_record.dart';
 
-/// Functions to query DemoRecords (as a Stream and as a Future).
-Future<int> queryDemoRecordCount({
+/// Functions to query RestrurantsRecords (as a Stream and as a Future).
+Future<int> queryRestrurantsRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      DemoRecord.collection,
+      RestrurantsRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<DemoRecord>> queryDemoRecord({
+Stream<List<RestrurantsRecord>> queryRestrurantsRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      DemoRecord.collection,
-      DemoRecord.fromSnapshot,
+      RestrurantsRecord.collection,
+      RestrurantsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<DemoRecord>> queryDemoRecordOnce({
+Future<List<RestrurantsRecord>> queryRestrurantsRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      DemoRecord.collection,
-      DemoRecord.fromSnapshot,
+      RestrurantsRecord.collection,
+      RestrurantsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MenuCategoryRecords (as a Stream and as a Future).
+Future<int> queryMenuCategoryRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MenuCategoryRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MenuCategoryRecord>> queryMenuCategoryRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MenuCategoryRecord.collection,
+      MenuCategoryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MenuCategoryRecord>> queryMenuCategoryRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MenuCategoryRecord.collection,
+      MenuCategoryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MenuItemRecords (as a Stream and as a Future).
+Future<int> queryMenuItemRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MenuItemRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MenuItemRecord>> queryMenuItemRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MenuItemRecord.collection,
+      MenuItemRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MenuItemRecord>> queryMenuItemRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MenuItemRecord.collection,
+      MenuItemRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
