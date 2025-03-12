@@ -13,5 +13,5 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 bool emailInputValidator(String email) {
-  return (email.isEmpty == true ? false : true);
+  return (email.isEmpty ? false : true);
 }
