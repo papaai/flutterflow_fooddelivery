@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
   // Add your function code here!
   return (emailTxt.isEmpty
       ? (false, '')
-      : (emailInputValidator(emailTxt)
+      : ((emailTxt).isValidEmail()
           ? (true, '')
           : (false, 'email input format is invalid')));
 }

@@ -201,11 +201,11 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                     Duration(milliseconds: 2000),
                                     () async {
                                       setState(() {
-                                        invalidEmail = actions
+                                        invalidEmail = (actions
                                             .isEmailValid(
                                               val,
                                             )
-                                            .$1;
+                                            .$1);
                                         emailErrortext = actions
                                             .isEmailValid(
                                               val,
@@ -220,15 +220,20 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                   decoration: InputDecoration(
                                     suffix: invalidEmail == null
                                         ? Container()
-                                        : (invalidEmail == true
+                                        : (invalidEmail == false
                                             ? Icon(
                                                 Icons.error,
                                                 color: Colors.red,
                                               )
-                                            : Icon(
-                                                Icons.done_outline_rounded,
-                                                color: Colors.green,
-                                              )),
+                                            : ((emailErrortext ?? '').isEmpty
+                                                ? Icon(
+                                                    Icons.done_outline_rounded,
+                                                    color: Colors.green,
+                                                  )
+                                                : Icon(
+                                                    Icons.error,
+                                                    color: Colors.red,
+                                                  ))),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -283,8 +288,6 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                 ),
                               ].divide(SizedBox(height: 8.0)),
                             ),
-                            Text('${invalidEmail}'),
-                            Text('${emailErrortext}'),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
