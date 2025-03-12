@@ -102,6 +102,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: MostPopularMenuWidget.routeName,
           path: MostPopularMenuWidget.routePath,
           builder: (context, params) => MostPopularMenuWidget(),
+        ),
+        FFRoute(
+          name: SignupPageWidget.routeName,
+          path: SignupPageWidget.routePath,
+          builder: (context, params) => SignupPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

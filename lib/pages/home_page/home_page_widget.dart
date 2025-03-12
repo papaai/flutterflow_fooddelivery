@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -29,11 +28,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
-
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -151,10 +147,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Container(
                                   width: 200.0,
                                   child: TextFormField(
-                                    controller: _model.textController1,
-                                    focusNode: _model.textFieldFocusNode1,
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.textController1',
+                                      '_model.textController',
                                       Duration(milliseconds: 2000),
                                       () => safeSetState(() {}),
                                     ),
@@ -216,10 +212,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Icons.search,
                                       ),
                                       suffixIcon: _model
-                                              .textController1!.text.isNotEmpty
+                                              .textController!.text.isNotEmpty
                                           ? InkWell(
                                               onTap: () async {
-                                                _model.textController1?.clear();
+                                                _model.textController?.clear();
                                                 safeSetState(() {});
                                               },
                                               child: Icon(
@@ -237,7 +233,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                     cursorColor: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    validator: _model.textController1Validator
+                                    validator: _model.textControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -429,74 +425,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 0.0, 0.0),
-                      child: Container(
-                        width: 200.0,
-                        child: TextFormField(
-                          controller: _model.textController2,
-                          focusNode: _model.textFieldFocusNode2,
-                          onFieldSubmitted: (_) async {
-                            await actions.newCustomAction(
-                              23,
-                            );
-                          },
-                          autofocus: false,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintText: 'TextField',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
+                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(SignupPageWidget.routeName);
+                        },
+                        text: 'Sign Up',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).tertiary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Inter Tight',
+                                    color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
-                          cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: _model.textController2Validator
-                              .asValidator(context),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),
