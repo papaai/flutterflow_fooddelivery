@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'signup_page_model.dart';
 export 'signup_page_model.dart';
@@ -192,6 +194,15 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                   controller:
                                       _model.emailTextFieldTextController,
                                   focusNode: _model.emailTextFieldFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.emailTextFieldTextController',
+                                    Duration(milliseconds: 2000),
+                                    () async {
+                                      await actions.isEmailValid(
+                                        '',
+                                      );
+                                    },
+                                  ),
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
                                   obscureText: false,
