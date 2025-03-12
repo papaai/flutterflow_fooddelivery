@@ -21,6 +21,8 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
   late SignupPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool? invalidEmail;
+  String? emailErrortext;
 
   @override
   void initState() {
@@ -194,25 +196,46 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                   controller:
                                       _model.emailTextFieldTextController,
                                   focusNode: _model.emailTextFieldFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
+                                  onChanged: (val) => EasyDebounce.debounce(
                                     '_model.emailTextFieldTextController',
                                     Duration(milliseconds: 2000),
                                     () async {
-                                      await actions.isEmailValid(
-                                        '',
-                                      );
+                                      setState(() {
+                                        invalidEmail = actions
+                                            .isEmailValid(
+                                              val,
+                                            )
+                                            .$1;
+                                        emailErrortext = actions
+                                            .isEmailValid(
+                                              val,
+                                            )
+                                            .$2;
+                                      });
                                     },
                                   ),
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
                                   obscureText: false,
                                   decoration: InputDecoration(
+                                    suffix: invalidEmail == null
+                                        ? Container()
+                                        : (invalidEmail == true
+                                            ? Icon(
+                                                Icons.error,
+                                                color: Colors.red,
+                                              )
+                                            : Icon(
+                                                Icons.done_outline_rounded,
+                                                color: Colors.green,
+                                              )),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
                                           fontFamily: 'Inter',
                                           letterSpacing: 0.0,
                                         ),
+                                    errorText: emailErrortext,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -260,6 +283,8 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                                 ),
                               ].divide(SizedBox(height: 8.0)),
                             ),
+                            Text('${invalidEmail}'),
+                            Text('${emailErrortext}'),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,

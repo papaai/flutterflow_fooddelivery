@@ -8,7 +8,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<bool> isEmailValid(String emailTxt) async {
+(bool, String) isEmailValid(String emailTxt) {
   // Add your function code here!
-  retrun(emailTxt.isEmpty ? false : true);
+  return (emailTxt.isEmpty
+      ? (false, '')
+      : (emailInputValidator(emailTxt)
+          ? (true, '')
+          : (false, 'email input format is invalid')));
+}
+
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
 }
